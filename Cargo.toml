@@ -1,0 +1,12 @@
+[package]
+name = "rvm-burn"
+authors = ["Raphael Menges, Ramin Hedeshy"]
+version = "0.0.0"
+edition = "2024"
+license = "GPL-3.0"
+
+[dependencies]
+burn = "0.20.0-pre.6"
+
+[build-dependencies]
+burn-import = "0.20.0-pre.6"

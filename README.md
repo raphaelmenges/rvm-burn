@@ -1,2 +1,4 @@
 # rvm-burn
-Inferring the Robust Video Matting (RVM) model with burn.
+Inferring the [Robust Video Matting (RVM)](https://peterl1n.github.io/RobustVideoMatting) model with [burn](https://github.com/tracel-ai/burn).
+
+Model `src/model/rvmopset20.onnx` taken from [RobustVideoMatting repository](https://github.com/PeterL1n/RobustVideoMatting/releases/download/v1.0.0/rvm_mobilenetv3_fp32.onnx) and converted to opset20 by @hedeshy.

@@ -433,6 +433,7 @@ dependencies = [
  "burn-core 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "burn-cpu 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "burn-cuda 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-ir 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "burn-ndarray 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "burn-nn 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "burn-optim 0.21.0-pre.1 (registry+https://github.com/rust-lang/crates.io-index)",

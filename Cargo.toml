@@ -6,9 +6,12 @@ edition = "2024"
 license = "GPL-3.0"
 
 [dependencies]
-burn = { version="0.21.0-pre.1", features = ["ndarray"] }
+burn = { version="0.21.0-pre.1", features = ["ndarray", "wgpu", "fusion"] }
 burn-store = { version = "0.21.0-pre.1", features = ["std", "burnpack"] }
 image = "0.25"
 
 [build-dependencies]
 burn-onnx = { git="https://github.com/tracel-ai/burn-onnx.git", rev="18b101c" }
+
+[profile.release]
+opt-level = 3

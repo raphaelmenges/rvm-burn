@@ -150,6 +150,9 @@ fn main() {
     run::<NdArray<f32>>("ndarray", &FAST);
     run::<NdArray<f32>>("ndarray", &BALANCED);
     run::<NdArray<f32>>("ndarray", &ACCURATE);
+    // run::<Cpu>("cpu", &FAST); // Too slow.
+    // run::<Cpu>("cpu", &BALANCED);
+    // run::<Cpu>("cpu", &ACCURATE);
     run::<Wgpu>("wgpu", &FAST);
     run::<Wgpu>("wgpu", &BALANCED);
     run::<Wgpu>("wgpu", &ACCURATE);

@@ -94,7 +94,7 @@ fn run<B: Backend>(backend_name: &str, res: &Resolution) {
 
     // Repeated inference.
     let downsample_ratio = vec![1_f32];
-    let iterations = 10;
+    let iterations = 25;
     let mut total = std::time::Duration::ZERO;
     for i in 0..=iterations {
         let src = Tensor::<B, 1>::from_floats(chw.as_slice(), &device).reshape([

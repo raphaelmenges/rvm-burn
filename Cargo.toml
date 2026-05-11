@@ -7,17 +7,17 @@ license = "GPL-3.0"
 
 [dependencies]
 image = "0.25"
-burn = { version="0.21.0-pre.3", features = ["ndarray", "cpu", "fusion"] }
-burn-store = { version = "0.21.0-pre.3", features = ["std", "burnpack"] }
+burn = { version="0.21.0", features = ["ndarray", "cpu", "fusion"] }
+burn-store = { version = "0.21.0", features = ["std", "burnpack"] }
 
 [target.'cfg(any(target_os = "linux", target_os = "windows"))'.dependencies]
-burn = { version="0.21.0-pre.3", features = ["vulkan"] }
+burn = { version="0.21.0", features = ["vulkan"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
-burn = { version="0.21.0-pre.3", features = ["metal"] }
+burn = { version="0.21.0", features = ["metal"] }
 
 [build-dependencies]
-burn-onnx = { git="https://github.com/tracel-ai/burn-onnx.git", rev="a8305ee" }
+burn-onnx = "0.21.0-pre.5"
 
 [profile.release]
 debug = false

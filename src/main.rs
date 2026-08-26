@@ -4,8 +4,7 @@ mod model;
 
 use burn::{
     Tensor,
-    backend::{Wgpu, ndarray::NdArray},
-    tensor::backend::Backend,
+    tensor::{Device, DeviceKind},
 };
 use image::{GrayImage, ImageReader, Luma};
 use model::rvmopset20::Model;
@@ -67,9 +66,8 @@ const ACCURATE: Resolution = Resolution {
     r4_height: 15,
 };
 
-fn run<B: Backend>(backend_name: &str, res: &Resolution) {
-    let device = B::Device::default();
-    let model: Model<B> = Model::default();
+fn run(device: &Device, backend_name: &str, res: &Resolution) {
+    let model = Model::from_file(concat!(env!("OUT_DIR"), "/model/rvmopset20.bpk"), device);
 
     // Load input image.
     let img = ImageReader::open("Lenna.png")
@@ -87,23 +85,23 @@ fn run<B: Backend>(backend_name: &str, res: &Resolution) {
         .collect();
 
     // Initial recurrent states.
-    let mut r1i = Tensor::<B, 4>::zeros([1, 16, res.r1_height, res.r1_width], &device);
-    let mut r2i = Tensor::<B, 4>::zeros([1, 20, res.r2_height, res.r2_width], &device);
-    let mut r3i = Tensor::<B, 4>::zeros([1, 40, res.r3_height, res.r3_width], &device);
-    let mut r4i = Tensor::<B, 4>::zeros([1, 64, res.r4_height, res.r4_width], &device);
+    let mut r1i = Tensor::<4>::zeros([1, 16, res.r1_height, res.r1_width], device);
+    let mut r2i = Tensor::<4>::zeros([1, 20, res.r2_height, res.r2_width], device);
+    let mut r3i = Tensor::<4>::zeros([1, 40, res.r3_height, res.r3_width], device);
+    let mut r4i = Tensor::<4>::zeros([1, 64, res.r4_height, res.r4_width], device);
 
     // Repeated inference.
     let downsample_ratio = vec![1_f32];
     let iterations = 25;
     let mut total = std::time::Duration::ZERO;
     for i in 0..=iterations {
-        let src = Tensor::<B, 1>::from_floats(chw.as_slice(), &device).reshape([
+        let src = Tensor::<1>::from_floats(chw.as_slice(), device).reshape([
             1,
             3,
             res.src_height,
             res.src_width,
         ]);
-        let downsample_ratio = Tensor::<B, 1>::from_floats(downsample_ratio.as_slice(), &device);
+        let downsample_ratio = Tensor::<1>::from_floats(downsample_ratio.as_slice(), device);
 
         // Do the inference.
         let start = Instant::now();
@@ -128,7 +126,7 @@ fn run<B: Backend>(backend_name: &str, res: &Resolution) {
             let pha: Vec<f32> = pha
                 .reshape([res.src_height, res.src_width])
                 .into_data()
-                .to_vec::<f32>()
+                .try_into_vec::<f32>()
                 .unwrap();
             let img = GrayImage::from_fn(res.src_width as u32, res.src_height as u32, |x, y| {
                 let v = pha[(y as usize) * res.src_width + x as usize];
@@ -147,13 +145,19 @@ fn run<B: Backend>(backend_name: &str, res: &Resolution) {
 }
 
 fn main() {
-    run::<NdArray<f32>>("ndarray", &FAST);
-    run::<NdArray<f32>>("ndarray", &BALANCED);
-    run::<NdArray<f32>>("ndarray", &ACCURATE);
-    // run::<Cpu>("cpu", &FAST); // Too slow.
-    // run::<Cpu>("cpu", &BALANCED);
-    // run::<Cpu>("cpu", &ACCURATE);
-    run::<Wgpu>("wgpu", &FAST);
-    run::<Wgpu>("wgpu", &BALANCED);
-    run::<Wgpu>("wgpu", &ACCURATE);
+    let flex = Device::flex();
+    run(&flex, "flex", &FAST);
+    run(&flex, "flex", &BALANCED);
+    run(&flex, "flex", &ACCURATE);
+    // let cpu = Device::cpu(); // Too slow.
+    // run(&cpu, "cpu", &FAST);
+    // run(&cpu, "cpu", &BALANCED);
+    // run(&cpu, "cpu", &ACCURATE);
+    #[cfg(any(target_os = "linux", target_os = "windows"))]
+    let gpu = Device::vulkan(DeviceKind::DefaultDevice);
+    #[cfg(target_os = "macos")]
+    let gpu = Device::metal(DeviceKind::DefaultDevice);
+    run(&gpu, "gpu", &FAST);
+    run(&gpu, "gpu", &BALANCED);
+    run(&gpu, "gpu", &ACCURATE);
 }

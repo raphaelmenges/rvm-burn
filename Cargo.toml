@@ -7,21 +7,21 @@ license = "GPL-3.0"
 
 [dependencies]
 image = "0.25"
-burn = { version="0.22.0-pre.3", features = ["flex", "cpu", "fusion"] }
-burn-store = "0.22.0-pre.3"
+burn = { version="0.22.0-pre.3", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion"] }
+burn-store = { version="0.22.0-pre.3", default-features = false, features = ["std"] }
 
 [target.'cfg(any(target_os = "linux", target_os = "windows"))'.dependencies]
-burn = { version="0.22.0-pre.3", features = ["vulkan"] }
+burn = { version="0.22.0-pre.3", default-features = false, features = ["vulkan"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
-burn = { version="0.22.0-pre.3", features = ["metal"] }
+burn = { version="0.22.0-pre.3", default-features = false, features = ["metal"] }
 
 [build-dependencies]
 burn-onnx = "0.22.0-pre.3"
 
 [profile.release]
 debug = false
-lto = true
+lto = "thin"
 strip = true
 opt-level = 3
 codegen-units = 1

@@ -1,14 +1,23 @@
-#![recursion_limit = "256"]
-
 mod model;
 
 use burn::{
     Tensor,
-    tensor::{Device, DeviceKind},
+    module::{Module, ModuleMapper, Param},
+    tensor::{Device, DeviceKind, FloatDType},
 };
 use image::{GrayImage, ImageReader, Luma};
 use model::rvmopset20::Model;
 use std::time::Instant;
+
+/// Casts every float parameter of a module to the given dtype.
+struct CastMapper(FloatDType);
+
+impl ModuleMapper for CastMapper {
+    fn map_float<const D: usize>(&mut self, param: Param<Tensor<D>>) -> Param<Tensor<D>> {
+        let (id, tensor, mapper) = param.consume();
+        Param::from_mapped_value(id, tensor.cast(self.0), mapper)
+    }
+}
 
 struct Resolution {
     name: &'static str,
@@ -66,8 +75,9 @@ const ACCURATE: Resolution = Resolution {
     r4_height: 15,
 };
 
-fn run(device: &Device, backend_name: &str, res: &Resolution) {
-    let model = Model::from_file(concat!(env!("OUT_DIR"), "/model/rvmopset20.bpk"), device);
+fn run(device: &Device, backend_name: &str, dtype: FloatDType, res: &Resolution) {
+    let model = Model::from_file(concat!(env!("OUT_DIR"), "/model/rvmopset20.bpk"), device)
+        .map(&mut CastMapper(dtype));
 
     // Load input image.
     let img = ImageReader::open("Lenna.png")
@@ -85,27 +95,29 @@ fn run(device: &Device, backend_name: &str, res: &Resolution) {
         .collect();
 
     // Initial recurrent states.
-    let mut r1i = Tensor::<4>::zeros([1, 16, res.r1_height, res.r1_width], device);
-    let mut r2i = Tensor::<4>::zeros([1, 20, res.r2_height, res.r2_width], device);
-    let mut r3i = Tensor::<4>::zeros([1, 40, res.r3_height, res.r3_width], device);
-    let mut r4i = Tensor::<4>::zeros([1, 64, res.r4_height, res.r4_width], device);
+    let options = (device, dtype.into());
+    let mut r1i = Tensor::<4>::zeros([1, 16, res.r1_height, res.r1_width], options);
+    let mut r2i = Tensor::<4>::zeros([1, 20, res.r2_height, res.r2_width], options);
+    let mut r3i = Tensor::<4>::zeros([1, 40, res.r3_height, res.r3_width], options);
+    let mut r4i = Tensor::<4>::zeros([1, 64, res.r4_height, res.r4_width], options);
+
+    // Upload the constant inputs once, before any timing begins.
+    let src = Tensor::<1>::from_floats(chw.as_slice(), device)
+        .reshape([1, 3, res.src_height, res.src_width])
+        .cast(dtype);
+    let downsample_ratio = Tensor::<1>::from_floats([1_f32].as_slice(), device).cast(dtype);
+    device.sync().unwrap();
 
     // Repeated inference.
-    let downsample_ratio = vec![1_f32];
+    let warmup = 10;
     let iterations = 25;
     let mut total = std::time::Duration::ZERO;
-    for i in 0..=iterations {
-        let src = Tensor::<1>::from_floats(chw.as_slice(), device).reshape([
-            1,
-            3,
-            res.src_height,
-            res.src_width,
-        ]);
-        let downsample_ratio = Tensor::<1>::from_floats(downsample_ratio.as_slice(), device);
-
+    for i in 0..(warmup + iterations) {
         // Do the inference.
         let start = Instant::now();
-        let (_, pha, r1o, r2o, r3o, r4o) = model.forward(src, r1i, r2i, r3i, r4i, downsample_ratio);
+        let (_, pha, r1o, r2o, r3o, r4o) =
+            model.forward(src.clone(), r1i, r2i, r3i, r4i, downsample_ratio.clone());
+        device.sync().unwrap();
         let elapsed = start.elapsed();
 
         // Update recurrent states.
@@ -114,17 +126,18 @@ fn run(device: &Device, backend_name: &str, res: &Resolution) {
         r3i = r3o;
         r4i = r4o;
 
-        // Let first run be warm-up.
-        if i == 0 {
+        // Let the first runs be warm-up.
+        if i < warmup {
             continue;
         }
 
         total += elapsed;
 
         // Save last output to disk.
-        if i == iterations - 1 {
+        if i == warmup + iterations - 1 {
             let pha: Vec<f32> = pha
                 .reshape([res.src_height, res.src_width])
+                .cast(FloatDType::F32)
                 .into_data()
                 .try_into_vec::<f32>()
                 .unwrap();
@@ -146,18 +159,17 @@ fn run(device: &Device, backend_name: &str, res: &Resolution) {
 
 fn main() {
     let flex = Device::flex();
-    run(&flex, "flex", &FAST);
-    run(&flex, "flex", &BALANCED);
-    run(&flex, "flex", &ACCURATE);
-    // let cpu = Device::cpu(); // Too slow.
-    // run(&cpu, "cpu", &FAST);
-    // run(&cpu, "cpu", &BALANCED);
-    // run(&cpu, "cpu", &ACCURATE);
+    run(&flex, "flex", FloatDType::F32, &FAST);
+    run(&flex, "flex", FloatDType::F32, &BALANCED);
+    run(&flex, "flex", FloatDType::F32, &ACCURATE);
     #[cfg(any(target_os = "linux", target_os = "windows"))]
     let gpu = Device::vulkan(DeviceKind::DefaultDevice);
     #[cfg(target_os = "macos")]
     let gpu = Device::metal(DeviceKind::DefaultDevice);
-    run(&gpu, "gpu", &FAST);
-    run(&gpu, "gpu", &BALANCED);
-    run(&gpu, "gpu", &ACCURATE);
+    run(&gpu, "gpu-fp32", FloatDType::F32, &FAST);
+    run(&gpu, "gpu-fp32", FloatDType::F32, &BALANCED);
+    run(&gpu, "gpu-fp32", FloatDType::F32, &ACCURATE);
+    run(&gpu, "gpu-fp16", FloatDType::F16, &FAST);
+    run(&gpu, "gpu-fp16", FloatDType::F16, &BALANCED);
+    run(&gpu, "gpu-fp16", FloatDType::F16, &ACCURATE);
 }

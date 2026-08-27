@@ -1,16 +1,5 @@
-[fusion.beam_search]
-max_blocks = 5
-
 [cubecl.autotune]
 level = "full"
-cache = "target"
 
 [cubecl.compilation]
-check_mode = "auto"
-cache = "target"
-
-[cubecl.streaming]
-max_streams = 8
-
-[cubecl.memory]
-persistent_memory = "enabled"
+cache = true

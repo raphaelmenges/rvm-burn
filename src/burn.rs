@@ -1,6 +1,9 @@
 use crate::{
-    common::{self, ACCURATE, BALANCED, FAST, ITERATIONS, Resolution, WARMUP},
+    input, measure,
+    measure::{ITERATIONS, WARMUP},
     model::rvmopset20::Model,
+    output,
+    resolution::{ACCURATE, BALANCED, FAST, Resolution},
 };
 use burn::{
     Tensor,
@@ -24,7 +27,7 @@ fn run(device: &Device, backend_name: &str, dtype: FloatDType, res: &Resolution)
         .map(&mut CastMapper(dtype));
 
     // Load input image.
-    let chw = common::load_src(res);
+    let chw = input::load_src(res);
 
     // Initial recurrent states.
     let options = (device, dtype.into());
@@ -71,11 +74,12 @@ fn run(device: &Device, backend_name: &str, dtype: FloatDType, res: &Resolution)
                 .into_data()
                 .try_into_vec::<f32>()
                 .unwrap();
-            common::save_alpha(&pha, res, backend_name);
+            output::save(&pha, res, backend_name);
+            output::check(&pha, res, backend_name);
         }
     }
 
-    common::report(backend_name, res, total);
+    measure::report(backend_name, res, total);
 }
 
 pub fn run_all() {

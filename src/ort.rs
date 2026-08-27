@@ -1,4 +1,9 @@
-use crate::common::{self, ACCURATE, BALANCED, FAST, ITERATIONS, Resolution, WARMUP};
+use crate::{
+    input, measure,
+    measure::{ITERATIONS, WARMUP},
+    output,
+    resolution::{ACCURATE, BALANCED, FAST, Resolution},
+};
 #[cfg(feature = "ort-coreml")]
 use ort::ep::coreml::CoreML;
 #[cfg(feature = "ort-directml")]
@@ -62,7 +67,7 @@ fn run(ep: &Ep, res: &Resolution) -> ort::Result<()> {
     // Upload the constant inputs once, before any timing begins.
     let src = Tensor::from_array((
         [1_usize, 3_usize, res.src_height, res.src_width],
-        common::load_src(res),
+        input::load_src(res),
     ))?;
     let downsample_ratio = Tensor::from_array(([1_usize], vec![1_f32]))?;
     let mut binding = session.create_binding()?;
@@ -138,12 +143,13 @@ fn run(ep: &Ep, res: &Resolution) -> ort::Result<()> {
         out_states = std::mem::replace(&mut spare, fresh);
     }
 
-    common::report(ep.name, res, total);
+    measure::report(ep.name, res, total);
 
     // Save the alpha matte of the last run to disk.
     let final_pha = final_pha.expect("alpha output is bound");
     let (_, pha) = final_pha.try_extract_tensor::<f32>()?;
-    common::save_alpha(pha, res, ep.name);
+    output::save(pha, res, ep.name);
+    output::check(pha, res, ep.name);
 
     Ok(())
 }

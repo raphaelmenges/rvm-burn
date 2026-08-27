@@ -9,17 +9,19 @@ license = "GPL-3.0"
 image = "0.25"
 burn = { version="0.22.0-pre.3", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion"] }
 burn-store = { version="0.22.0-pre.3", default-features = false, features = ["std"] }
-ort = { version = "2.0.0-rc.13", features = ["webgpu"] }
+ort = { version = "2.0.0-rc.13" }
+
+[features]
+default = ["ort-webgpu"]
+ort-webgpu = ["ort/webgpu"]
+ort-directml = ["ort/directml"]
+ort-coreml = ["ort/coreml"]
 
 [target.'cfg(any(target_os = "linux", target_os = "windows"))'.dependencies]
 burn = { version="0.22.0-pre.3", default-features = false, features = ["vulkan"] }
 
-[target.'cfg(target_os = "windows")'.dependencies]
-ort = { version = "2.0.0-rc.13", features = ["directml"] }
-
 [target.'cfg(target_os = "macos")'.dependencies]
 burn = { version="0.22.0-pre.3", default-features = false, features = ["metal"] }
-ort = { version = "2.0.0-rc.13", features = ["coreml"] }
 
 [build-dependencies]
 burn-onnx = "0.22.0-pre.3"

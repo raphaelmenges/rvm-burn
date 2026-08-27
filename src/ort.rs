@@ -1,15 +1,26 @@
 use crate::common::{self, ACCURATE, BALANCED, FAST, ITERATIONS, Resolution, WARMUP};
-#[cfg(target_os = "macos")]
+#[cfg(feature = "ort-coreml")]
 use ort::ep::coreml::CoreML;
-#[cfg(target_os = "windows")]
+#[cfg(feature = "ort-directml")]
 use ort::ep::directml::DirectML;
+#[cfg(feature = "ort-webgpu")]
+use ort::ep::webgpu::WebGPU;
 use ort::{
-    ep::{ExecutionProviderDispatch, webgpu::WebGPU},
+    ep::ExecutionProviderDispatch,
     memory::{AllocationDevice, Allocator, AllocatorType, MemoryInfo, MemoryType},
     session::Session,
     value::{DynValue, Tensor},
 };
 use std::time::{Duration, Instant};
+
+#[cfg(any(
+    all(feature = "ort-webgpu", feature = "ort-directml"),
+    all(feature = "ort-webgpu", feature = "ort-coreml"),
+    all(feature = "ort-directml", feature = "ort-coreml"),
+))]
+compile_error!(
+    "Enable at most one ORT GPU execution provider feature: ort-webgpu, ort-directml, or ort-coreml."
+);
 
 const MODEL_PATH: &str = "src/model/rvmopset20.onnx";
 const STATE_INPUT_NAMES: [&str; 4] = ["r1i", "r2i", "r3i", "r4i"];
@@ -139,25 +150,24 @@ fn run(ep: &Ep, res: &Resolution) -> ort::Result<()> {
 
 pub fn run_all() -> ort::Result<()> {
     #[allow(unused_mut)]
-    let mut eps = vec![
-        Ep {
-            name: "ort-cpu",
-            device: AllocationDevice::CPU,
-            dispatch: || None,
-        },
-        Ep {
-            name: "ort-webgpu",
-            device: AllocationDevice::WEBGPU_BUFFER,
-            dispatch: || Some(WebGPU::default().build().error_on_failure()),
-        },
-    ];
-    #[cfg(target_os = "windows")]
+    let mut eps = vec![Ep {
+        name: "ort-cpu",
+        device: AllocationDevice::CPU,
+        dispatch: || None,
+    }];
+    #[cfg(feature = "ort-webgpu")]
+    eps.push(Ep {
+        name: "ort-webgpu",
+        device: AllocationDevice::WEBGPU_BUFFER,
+        dispatch: || Some(WebGPU::default().build().error_on_failure()),
+    });
+    #[cfg(feature = "ort-directml")]
     eps.push(Ep {
         name: "ort-directml",
         device: AllocationDevice::DIRECTML,
         dispatch: || Some(DirectML::default().build().error_on_failure()),
     });
-    #[cfg(target_os = "macos")]
+    #[cfg(feature = "ort-coreml")]
     eps.push(Ep {
         name: "ort-coreml",
         device: AllocationDevice::CPU,

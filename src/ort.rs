@@ -11,6 +11,7 @@ use ort::ep::directml::DirectML;
 #[cfg(feature = "ort-webgpu")]
 use ort::ep::webgpu::WebGPU;
 use ort::{
+    environment::Environment,
     ep::ExecutionProviderDispatch,
     memory::{AllocationDevice, Allocator, AllocatorType, MemoryInfo, MemoryType},
     session::Session,
@@ -53,8 +54,8 @@ fn state_set(allocator: &Allocator, shapes: &[[usize; 4]; 4]) -> ort::Result<Vec
         .collect()
 }
 
-fn run(ep: &Ep, res: &Resolution) -> ort::Result<()> {
-    let mut builder = Session::builder()?;
+fn run(environment: &Environment, ep: &Ep, res: &Resolution) -> ort::Result<()> {
+    let mut builder = Session::builder(environment)?;
     if let Some(dispatch) = (ep.dispatch)() {
         builder = builder.with_execution_providers([dispatch])?;
     }
@@ -155,6 +156,8 @@ fn run(ep: &Ep, res: &Resolution) -> ort::Result<()> {
 }
 
 pub fn run_all() -> ort::Result<()> {
+    let environment = ort::init().with_name("rvm-burn").build()?;
+
     #[allow(unused_mut)]
     let mut eps = vec![Ep {
         name: "ort-cpu",
@@ -181,7 +184,7 @@ pub fn run_all() -> ort::Result<()> {
     });
     for ep in &eps {
         for res in [&FAST, &BALANCED, &ACCURATE] {
-            run(ep, res)?;
+            run(&environment, ep, res)?;
         }
     }
     Ok(())

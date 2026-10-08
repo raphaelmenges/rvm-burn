@@ -7,8 +7,8 @@ license = "GPL-3.0"
 
 [dependencies]
 image = "0.25"
-burn = { version="0.22.0-pre.4", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion", "autotune"] }
-burn-store = { version="0.22.0-pre.4", default-features = false, features = ["std"] }
+burn = { version="0.22.0", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion", "autotune"] }
+burn-store = { version="0.22.0", default-features = false, features = ["std"] }
 ort = { git = "https://github.com/pykeio/ort.git", rev = "6d7c231c3430026bd5e8262fc8d74e2307512ab1" }
 
 [features]
@@ -18,13 +18,13 @@ ort-directml = ["ort/directml"]
 ort-coreml = ["ort/coreml"]
 
 [target.'cfg(any(target_os = "linux", target_os = "windows"))'.dependencies]
-burn = { version="0.22.0-pre.4", default-features = false, features = ["vulkan"] }
+burn = { version="0.22.0", default-features = false, features = ["vulkan"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
-burn = { version="0.22.0-pre.4", default-features = false, features = ["metal"] }
+burn = { version="0.22.0", default-features = false, features = ["metal"] }
 
 [build-dependencies]
-burn-onnx = { git = "https://github.com/tracel-ai/burn-onnx.git", rev = "db5612d0087caae20227a5dd049589d5feb6514b" }
+burn-onnx = "0.22.0"
 
 [profile.release]
 debug = false

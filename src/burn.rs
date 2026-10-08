@@ -17,8 +17,7 @@ struct CastMapper(FloatDType);
 
 impl ModuleMapper for CastMapper {
     fn map_float<const D: usize>(&mut self, param: Param<Tensor<D>>) -> Param<Tensor<D>> {
-        let (id, tensor, mapper) = param.consume();
-        Param::from_mapped_value(id, tensor.cast(self.0), mapper)
+        param.map(|tensor| tensor.cast(self.0))
     }
 }
 
@@ -70,9 +69,7 @@ fn run(device: &Device, backend_name: &str, dtype: FloatDType, res: &Resolution)
         if i == WARMUP + ITERATIONS - 1 {
             let pha: Vec<f32> = pha
                 .reshape([res.src_height, res.src_width])
-                .cast(FloatDType::F32)
-                .into_data()
-                .try_into_vec::<f32>()
+                .try_into_vec_as::<f32>()
                 .unwrap();
             output::save(&pha, res, backend_name);
             output::check(&pha, res, backend_name);

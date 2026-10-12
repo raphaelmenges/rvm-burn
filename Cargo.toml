@@ -9,7 +9,7 @@ license = "GPL-3.0"
 image = "0.25"
 burn = { version="0.22.0", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion", "autotune"] }
 burn-store = { version="0.22.0", default-features = false, features = ["std"] }
-ort = { git = "https://github.com/pykeio/ort.git", rev = "6d7c231c3430026bd5e8262fc8d74e2307512ab1" }
+ort = { git = "https://github.com/pykeio/ort.git", rev = "75021e8e0a6eb78c8b0d45fa9e3d0dfcff930065" }
 
 [features]
 default = ["ort-webgpu"]

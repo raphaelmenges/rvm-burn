@@ -15,9 +15,13 @@ use ort::{
     ep::ExecutionProviderDispatch,
     memory::{AllocationDevice, Allocator, AllocatorType, MemoryInfo, MemoryType},
     session::Session,
+    sys::OrtGetApiBase,
     value::{DynValue, Tensor},
 };
-use std::time::{Duration, Instant};
+use std::{
+    ffi::CStr,
+    time::{Duration, Instant},
+};
 
 #[cfg(any(
     all(feature = "ort-webgpu", feature = "ort-directml"),
@@ -35,10 +39,19 @@ const STATE_OUTPUT_NAMES: [&str; 4] = ["r1o", "r2o", "r3o", "r4o"];
 struct Ep {
     name: &'static str,
     /// Device on which the recurrent states are kept resident.
-    device: AllocationDevice,
+    device: AllocationDevice<'static>,
     /// Registration for the session builder, or None for the CPU execution
     /// provider, which is always available without registration.
     dispatch: fn() -> Option<ExecutionProviderDispatch>,
+}
+
+pub fn version() -> &'static str {
+    unsafe {
+        let base = OrtGetApiBase();
+        CStr::from_ptr(((*base).GetVersionString)())
+            .to_str()
+            .unwrap_or("unknown")
+    }
 }
 
 /// Creates a zero-filled tensor in CPU memory.

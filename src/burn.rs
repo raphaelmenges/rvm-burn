@@ -12,6 +12,10 @@ use burn::{
 };
 use std::time::Instant;
 
+pub fn version() -> &'static str {
+    env!("BURN_VERSION")
+}
+
 /// Casts every float parameter of a module to the given dtype.
 struct CastMapper(FloatDType);
 

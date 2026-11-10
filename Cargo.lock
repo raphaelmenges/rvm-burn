@@ -616,14 +616,29 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4100e9ad9b9a5fca8385a35e1368b8b3e9a5936ebec6100740c32425a2006229"
 dependencies = [
- "burn-core",
- "burn-linalg",
- "burn-nn",
- "burn-optim",
- "burn-signal",
- "burn-std",
- "burn-store",
- "burn-vision",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-linalg 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-nn 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-optim 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-signal 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-store 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-vision 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "burn"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-linalg 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-nn 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-optim 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-signal 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-store 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-vision 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
 ]
 
@@ -633,8 +648,23 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "33af61bbc67555c1654a7598249c9dec57b04a53ddc2643c6338d642c2aa9cd8"
 dependencies = [
- "burn-backend",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "derive-new",
+ "hashbrown 0.16.1",
+ "num-traits",
+ "parking_lot",
+ "portable-atomic",
+ "spin",
+]
+
+[[package]]
+name = "burn-autodiff"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "derive-new",
  "hashbrown 0.16.1",
  "num-traits",
@@ -649,7 +679,26 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "adb14d1f73815a7cc03612e1dfdbd8dab10a651a3fea538244c46bf8de592e62"
 dependencies = [
- "burn-std",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cubecl",
+ "derive-new",
+ "enumset",
+ "hashbrown 0.16.1",
+ "log",
+ "num-traits",
+ "oneshot",
+ "rand 0.10.3",
+ "rand_distr",
+ "serde",
+ "spin",
+]
+
+[[package]]
+name = "burn-backend"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
  "derive-new",
  "enumset",
@@ -675,26 +724,65 @@ dependencies = [
 ]
 
 [[package]]
+name = "burn-backend-extension"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.10",
+]
+
+[[package]]
 name = "burn-core"
 version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6f246829e37fb4c72ce792ec5039250c3b20df41192985682e7131e8b6962a70"
 dependencies = [
- "burn-backend",
- "burn-backend-extension",
- "burn-cpu",
- "burn-cubecl",
- "burn-cuda",
- "burn-derive",
- "burn-dispatch",
- "burn-fusion",
- "burn-instrument",
- "burn-ir",
- "burn-pack",
- "burn-rocm",
- "burn-std",
- "burn-tensor",
- "burn-wgpu",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-backend-extension 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cpu 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cuda 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-derive 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-dispatch 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-instrument 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-pack 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-rocm 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-tensor 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-wgpu 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "derive-new",
+ "half",
+ "hashbrown 0.16.1",
+ "log",
+ "num-traits",
+ "rand 0.10.3",
+ "regex",
+ "serde",
+ "serde_json",
+ "spin",
+]
+
+[[package]]
+name = "burn-core"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-backend-extension 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cpu 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cuda 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-derive 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-dispatch 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-instrument 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-pack 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-rocm 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-tensor 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-wgpu 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "derive-new",
  "half",
  "hashbrown 0.16.1",
@@ -713,9 +801,19 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "157c5b628b38f6ce01946a32a3c46b688c4ef7f22b8e17d9a8926bab1d5a42f8"
 dependencies = [
- "burn-backend",
- "burn-cubecl",
- "burn-fusion",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cubecl 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cubecl",
+]
+
+[[package]]
+name = "burn-cpu"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
 ]
 
@@ -725,11 +823,30 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "29d33b33f13e8e053065a8b8d17739dcff3e64871b1353454ff7e838e0150f24"
 dependencies = [
- "burn-backend",
- "burn-cubecl-fusion",
- "burn-fusion",
- "burn-ir",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cubecl-fusion 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-fusion 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-ir 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cubecl",
+ "cubek",
+ "derive-new",
+ "futures-lite",
+ "log",
+ "serde",
+ "text_placeholder",
+]
+
+[[package]]
+name = "burn-cubecl"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
  "cubek",
  "derive-new",
@@ -745,10 +862,28 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d574c5606ce4b3233bd453034b915a9778b18a6eea8a516f750822551b3e8476"
 dependencies = [
- "burn-backend",
- "burn-fusion",
- "burn-ir",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-fusion 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-ir 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ciborium",
+ "cubecl",
+ "cubek",
+ "derive-new",
+ "hashbrown 0.16.1",
+ "serde",
+ "spin",
+]
+
+[[package]]
+name = "burn-cubecl-fusion"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "ciborium",
  "cubecl",
  "cubek",
@@ -764,9 +899,19 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a9d1b4100c45445c63cc756325065606ed5d7deab5a448bd9a4d44200a426166"
 dependencies = [
- "burn-backend",
- "burn-cubecl",
- "burn-fusion",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cubecl 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cubecl",
+]
+
+[[package]]
+name = "burn-cuda"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
 ]
 
@@ -776,7 +921,19 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5545276bdfe539eb9e7696d402ee26af77e3edf77ea970302b0a412e837753d7"
 dependencies = [
- "burn-einsum",
+ "burn-einsum 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "derive-new",
+ "proc-macro2",
+ "quote",
+ "syn 3.0.10",
+]
+
+[[package]]
+name = "burn-derive"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-einsum 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "derive-new",
  "proc-macro2",
  "quote",
@@ -789,11 +946,25 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a85cda0784402682fc6e261ea699c51425d96ac338858ada80e75de1ca25a6e6"
 dependencies = [
- "burn-autodiff",
- "burn-backend",
- "burn-backend-extension",
- "burn-cubecl",
- "burn-flex",
+ "burn-autodiff 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-backend-extension 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cubecl 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-flex 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "paste",
+ "portable-atomic",
+]
+
+[[package]]
+name = "burn-dispatch"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-autodiff 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-backend-extension 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-flex 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-remote",
  "burn-router",
  "paste",
@@ -807,15 +978,37 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "38cd2b119d7ff14ec3b496a05a8bc75069a7a9c944395507177ad915f8ae05e8"
 
 [[package]]
+name = "burn-einsum"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+
+[[package]]
 name = "burn-flex"
 version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "386b0b78fc8fe4a6b604d93906b4819de33e987860ec653a2cb57500c301b992"
 dependencies = [
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-ir 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bytemuck",
+ "gemm",
+ "half",
+ "libm",
+ "num-traits",
+ "once_cell",
+ "portable-atomic",
+]
+
+[[package]]
+name = "burn-flex"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
  "aligned-vec",
- "burn-backend",
- "burn-ir",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "bytemuck",
  "gemm",
  "half",
@@ -833,9 +1026,25 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6bb3b6d0580fe7bbf13a1064b1c7ed8db972b6e2949f8ea8564191786cdd45e2"
 dependencies = [
- "burn-backend",
- "burn-ir",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-ir 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "derive-new",
+ "hashbrown 0.16.1",
+ "log",
+ "serde",
+ "spin",
+ "tracing",
+]
+
+[[package]]
+name = "burn-fusion"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "derive-new",
  "hashbrown 0.16.1",
  "log",
@@ -850,10 +1059,24 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "41f4d34ecd4edd3e06f6079015cc22310fb8b741d87f3e5973d1bb6af7ececb5"
 dependencies = [
- "burn-fusion",
- "burn-instrument-macros",
- "burn-ir",
- "burn-tensor",
+ "burn-fusion 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-instrument-macros 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-ir 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-tensor 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.21",
+]
+
+[[package]]
+name = "burn-instrument"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-instrument-macros 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-tensor 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
  "cubecl-common",
  "serde",
@@ -873,13 +1096,34 @@ dependencies = [
 ]
 
 [[package]]
+name = "burn-instrument-macros"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.10",
+]
+
+[[package]]
 name = "burn-ir"
 version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5779ea2dde224585671092e1bf524a4f6b36d2112e5be2a984b942afdab39513"
 dependencies = [
- "burn-backend",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "hashbrown 0.16.1",
+ "serde",
+]
+
+[[package]]
+name = "burn-ir"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "hashbrown 0.16.1",
  "serde",
 ]
@@ -890,10 +1134,22 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d359ed188a01e2e6b1b2cc34d21fe0c91a012c9e2a933ef5bba65a70e8eb9e25"
 dependencies = [
- "burn-core",
- "burn-cubecl",
- "burn-fusion",
- "burn-std",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-fusion 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gemm",
+ "num-traits",
+]
+
+[[package]]
+name = "burn-linalg"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "gemm",
  "num-traits",
 ]
@@ -904,8 +1160,18 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "89409efcb0080c96a9faad4d3b61cc8dfe124f2dc2686f8892b56664fa04eae4"
 dependencies = [
- "burn-core",
- "burn-linalg",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-linalg 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num-traits",
+]
+
+[[package]]
+name = "burn-nn"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-linalg 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "num-traits",
 ]
 
@@ -915,9 +1181,9 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bd945203dbdc32dbf1881891fbd24dee9176417cdb2dd0876227a98eac8674cf"
 dependencies = [
- "burn",
- "burn-pack",
- "burn-store",
+ "burn 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-pack 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-store 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap",
  "derive-new",
  "log",
@@ -936,9 +1202,24 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2ff5907579e378086706e2912f7db16489c66bd0ede046fdc71f2afb45ebafba"
 dependencies = [
- "burn-core",
- "burn-derive",
- "burn-pack",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-derive 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-pack 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "derive-new",
+ "hashbrown 0.16.1",
+ "log",
+ "num-traits",
+ "serde",
+]
+
+[[package]]
+name = "burn-optim"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-derive 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-pack 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "derive-new",
  "hashbrown 0.16.1",
  "log",
@@ -952,7 +1233,18 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0831a51f222a775a70ca01be1bdd840cc5de270b9386e70f9cbad92f6d55fcd0"
 dependencies = [
- "burn-std",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "byteorder",
+ "ciborium",
+ "serde",
+]
+
+[[package]]
+name = "burn-pack"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "byteorder",
  "ciborium",
  "serde",
@@ -961,14 +1253,13 @@ dependencies = [
 [[package]]
 name = "burn-remote"
 version = "0.23.0-pre.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a97b5fb4f78afe43fd0bc578d92093b2a844e7899c751fb87409ab6020b3fa5"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
 dependencies = [
- "burn-backend",
- "burn-fusion",
- "burn-ir",
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-router",
- "burn-std",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "bytes",
  "futures-util",
  "gloo-timers",
@@ -987,22 +1278,31 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca0d14f077785481fd2bd187eecb8008a0400fbdced52a12818353b9434491b3"
 dependencies = [
- "burn-backend",
- "burn-cubecl",
- "burn-fusion",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cubecl 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cubecl",
+]
+
+[[package]]
+name = "burn-rocm"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
 ]
 
 [[package]]
 name = "burn-router"
 version = "0.23.0-pre.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f30e853537c4f032a57956f7d7332873a9c475699a0c184e146da343b6c1f3ff"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
 dependencies = [
- "burn-backend",
- "burn-fusion",
- "burn-ir",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "hashbrown 0.16.1",
  "log",
  "portable-atomic",
@@ -1016,12 +1316,25 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f4af76f874eef6d79059a0bb5be074dfdaac1de2a3e1469373984d8058b24477"
 dependencies = [
- "burn-autodiff",
- "burn-core",
- "burn-cubecl",
- "burn-flex",
- "burn-fusion",
- "burn-std",
+ "burn-autodiff 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-flex 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-fusion 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libm",
+]
+
+[[package]]
+name = "burn-signal"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-autodiff 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-flex 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "libm",
 ]
 
@@ -1052,13 +1365,55 @@ dependencies = [
 ]
 
 [[package]]
+name = "burn-std"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "ahash",
+ "bytemuck",
+ "bytes",
+ "cubecl-common",
+ "cubecl-environment",
+ "cubecl-zspace",
+ "data-encoding",
+ "derive-new",
+ "half",
+ "hashbrown 0.16.1",
+ "num-traits",
+ "rand 0.10.3",
+ "rand_distr",
+ "serde",
+ "smallvec",
+ "spin",
+ "thiserror 2.0.21",
+ "uuid",
+]
+
+[[package]]
 name = "burn-store"
 version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b02401f6413bd3fa857ef6c0528718eeec72c133519f94854193cebea8841a01"
 dependencies = [
- "burn-core",
- "burn-pack",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-pack 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "byteorder",
+ "bytes",
+ "half",
+ "hashbrown 0.16.1",
+ "memmap2",
+ "regex",
+ "safetensors",
+ "textdistance",
+]
+
+[[package]]
+name = "burn-store"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-pack 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "byteorder",
  "bytes",
  "half",
@@ -1075,11 +1430,27 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3d8eb74859d782f6378befeccbc6686f8830a7ffb41f561ec95c0d435419531"
 dependencies = [
- "burn-backend",
- "burn-derive",
- "burn-dispatch",
- "burn-einsum",
- "burn-std",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-derive 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-dispatch 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-einsum 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "colored",
+ "derive-new",
+ "num-traits",
+ "serde",
+]
+
+[[package]]
+name = "burn-tensor"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-derive 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-dispatch 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-einsum 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "colored",
  "derive-new",
  "num-traits",
@@ -1094,10 +1465,28 @@ checksum = "33126b0625fdb3288e7071b04b0d245eccbdfd4726108f28d6a47ff376fd2556"
 dependencies = [
  "aligned-vec",
  "bon",
- "burn-core",
- "burn-cubecl",
- "burn-fusion",
- "burn-std",
+ "burn-core 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-std 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bytemuck",
+ "derive-new",
+ "image",
+ "macerator",
+ "ndarray",
+ "num-traits",
+ "serde",
+]
+
+[[package]]
+name = "burn-vision"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "aligned-vec",
+ "bon",
+ "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "bytemuck",
  "cubecl",
  "derive-new",
@@ -1114,9 +1503,19 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39a243dcd4901c1770d6e732739156cd1080e317d01f4b63295f3d92a098ff34"
 dependencies = [
- "burn-backend",
- "burn-cubecl",
- "burn-fusion",
+ "burn-backend 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "burn-cubecl 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cubecl",
+]
+
+[[package]]
+name = "burn-wgpu"
+version = "0.23.0-pre.2"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0f26d4937773a6c0de3175e94c7e7d3ccc43f545"
+dependencies = [
+ "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
+ "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
 ]
 
@@ -4509,7 +4908,7 @@ version = "0.23.0-pre.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a7d5f663cae55be5d8aaf9884c6f77a94d385f4dc9a718c34789bf141083fe95"
 dependencies = [
- "burn-tensor",
+ "burn-tensor 0.23.0-pre.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "bytemuck",
  "bytes",
  "derive-new",
@@ -5553,9 +5952,9 @@ checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
 name = "rvm-burn"
 version = "0.0.0"
 dependencies = [
- "burn",
+ "burn 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-onnx",
- "burn-store",
+ "burn-store 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "image",
  "ort",
 ]

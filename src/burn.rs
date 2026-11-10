@@ -8,7 +8,7 @@ use crate::{
 use burn::{
     Tensor,
     module::{Module, ModuleMapper, Param},
-    tensor::{Device, DeviceKind, FloatDType},
+    tensor::{Device, FloatDType},
 };
 use std::time::Instant;
 
@@ -89,9 +89,9 @@ pub fn run_all() {
     run(&flex, "burn-flex", FloatDType::F32, &BALANCED);
     run(&flex, "burn-flex", FloatDType::F32, &ACCURATE);
     #[cfg(any(target_os = "linux", target_os = "windows"))]
-    let gpu = Device::vulkan(DeviceKind::DefaultDevice);
+    let gpu = Device::vulkan(Default::default());
     #[cfg(target_os = "macos")]
-    let gpu = Device::metal(DeviceKind::DefaultDevice);
+    let gpu = Device::metal();
     run(&gpu, "burn-gpu-fp32", FloatDType::F32, &FAST);
     run(&gpu, "burn-gpu-fp32", FloatDType::F32, &BALANCED);
     run(&gpu, "burn-gpu-fp32", FloatDType::F32, &ACCURATE);

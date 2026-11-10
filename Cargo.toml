@@ -7,9 +7,9 @@ license = "GPL-3.0"
 
 [dependencies]
 image = "0.25"
-burn = { version="0.22.0", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion", "autotune"] }
-burn-store = { version="0.22.0", default-features = false, features = ["std"] }
-ort = { git = "https://github.com/pykeio/ort.git", rev = "75021e8e0a6eb78c8b0d45fa9e3d0dfcff930065" }
+burn = { version="0.23.0-pre.2", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion", "autotune", "persistence", "x86-v4"] }
+burn-store = { version="0.23.0-pre.2", default-features = false, features = ["std"] }
+ort = "2.0.0-rc.15"
 
 [features]
 default = ["ort-webgpu"]
@@ -18,13 +18,13 @@ ort-directml = ["ort/directml"]
 ort-coreml = ["ort/coreml"]
 
 [target.'cfg(any(target_os = "linux", target_os = "windows"))'.dependencies]
-burn = { version="0.22.0", default-features = false, features = ["vulkan"] }
+burn = { version="0.23.0-pre.2", default-features = false, features = ["vulkan"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
-burn = { version="0.22.0", default-features = false, features = ["metal"] }
+burn = { version="0.23.0-pre.2", default-features = false, features = ["metal"] }
 
 [build-dependencies]
-burn-onnx = "0.22.0"
+burn-onnx = "0.23.0-pre.2"
 
 [profile.release]
 debug = false

@@ -75,7 +75,12 @@ fn run(environment: &Environment, ep: &Ep, res: &Resolution) -> ort::Result<()> 
     let mut session = builder.commit_from_file(MODEL_PATH)?;
 
     // Allocator for the device-resident recurrent state buffers.
-    let memory = MemoryInfo::new(ep.device, 0, AllocatorType::Device, MemoryType::Default)?;
+    let memory = MemoryInfo::new(
+        ep.device.clone(),
+        0,
+        AllocatorType::Device,
+        MemoryType::Default,
+    )?;
     let allocator = Allocator::new(&session, memory)?;
 
     // Upload the constant inputs once, before any timing begins.
@@ -105,7 +110,10 @@ fn run(environment: &Environment, ep: &Ep, res: &Resolution) -> ort::Result<()> 
     binding.bind_output_to_device("fgr", allocator.memory_info())?;
     binding.bind_output(
         "pha",
-        zero_tensor(&[1_usize, 1_usize, res.src_height, res.src_width])?,
+        Tensor::<f32>::new(
+            &Allocator::default(),
+            [1_usize, 1_usize, res.src_height, res.src_width],
+        )?,
     )?;
 
     // Two disjoint sets of state buffers alternate between the output and the

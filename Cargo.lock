@@ -629,7 +629,7 @@ dependencies = [
 [[package]]
 name = "burn"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-linalg 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -661,7 +661,7 @@ dependencies = [
 [[package]]
 name = "burn-autodiff"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -696,7 +696,7 @@ dependencies = [
 [[package]]
 name = "burn-backend"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "cubecl",
@@ -726,7 +726,7 @@ dependencies = [
 [[package]]
 name = "burn-backend-extension"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -766,7 +766,7 @@ dependencies = [
 [[package]]
 name = "burn-core"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-backend-extension 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -809,7 +809,7 @@ dependencies = [
 [[package]]
 name = "burn-cpu"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -840,7 +840,7 @@ dependencies = [
 [[package]]
 name = "burn-cubecl"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-cubecl-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -878,7 +878,7 @@ dependencies = [
 [[package]]
 name = "burn-cubecl-fusion"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -907,7 +907,7 @@ dependencies = [
 [[package]]
 name = "burn-cuda"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -931,7 +931,7 @@ dependencies = [
 [[package]]
 name = "burn-derive"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-einsum 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "derive-new",
@@ -958,7 +958,7 @@ dependencies = [
 [[package]]
 name = "burn-dispatch"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-autodiff 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -980,7 +980,7 @@ checksum = "38cd2b119d7ff14ec3b496a05a8bc75069a7a9c944395507177ad915f8ae05e8"
 [[package]]
 name = "burn-einsum"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 
 [[package]]
 name = "burn-flex"
@@ -1003,7 +1003,7 @@ dependencies = [
 [[package]]
 name = "burn-flex"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "aligned-vec",
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1040,7 +1040,7 @@ dependencies = [
 [[package]]
 name = "burn-fusion"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-ir 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1071,7 +1071,7 @@ dependencies = [
 [[package]]
 name = "burn-instrument"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-instrument-macros 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1098,7 +1098,7 @@ dependencies = [
 [[package]]
 name = "burn-instrument-macros"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1120,7 +1120,7 @@ dependencies = [
 [[package]]
 name = "burn-ir"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1144,7 +1144,7 @@ dependencies = [
 [[package]]
 name = "burn-linalg"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1168,7 +1168,7 @@ dependencies = [
 [[package]]
 name = "burn-nn"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-linalg 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1215,7 +1215,7 @@ dependencies = [
 [[package]]
 name = "burn-optim"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-derive 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1242,7 +1242,7 @@ dependencies = [
 [[package]]
 name = "burn-pack"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-std 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "byteorder",
@@ -1253,7 +1253,7 @@ dependencies = [
 [[package]]
 name = "burn-remote"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1286,7 +1286,7 @@ dependencies = [
 [[package]]
 name = "burn-rocm"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1297,7 +1297,7 @@ dependencies = [
 [[package]]
 name = "burn-router"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-fusion 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1327,7 +1327,7 @@ dependencies = [
 [[package]]
 name = "burn-signal"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-autodiff 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1367,7 +1367,7 @@ dependencies = [
 [[package]]
 name = "burn-std"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "ahash",
  "bytemuck",
@@ -1410,7 +1410,7 @@ dependencies = [
 [[package]]
 name = "burn-store"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-core 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-pack 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1444,7 +1444,7 @@ dependencies = [
 [[package]]
 name = "burn-tensor"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-derive 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
@@ -1479,7 +1479,7 @@ dependencies = [
 [[package]]
 name = "burn-vision"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "aligned-vec",
  "bon",
@@ -1511,7 +1511,7 @@ dependencies = [
 [[package]]
 name = "burn-wgpu"
 version = "0.23.0-pre.2"
-source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#e99a50ea61ff33301adc9e2b0d5f99d9e8d303ba"
+source = "git+https://github.com/raphaelmenges/burn?branch=faster-rvm#0816ee0bddf99ad0d71e521c82f6e496007589f4"
 dependencies = [
  "burn-backend 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",
  "burn-cubecl 0.23.0-pre.2 (git+https://github.com/raphaelmenges/burn?branch=faster-rvm)",

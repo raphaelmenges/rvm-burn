@@ -10,6 +10,8 @@ image = "0.25"
 burn = { git = "https://github.com/raphaelmenges/burn", branch = "faster-rvm", default-features = false, features = ["std", "flex", "simd", "rayon", "fusion", "autotune", "persistence", "x86-v4"] }
 burn-store = { git = "https://github.com/raphaelmenges/burn", branch = "faster-rvm", default-features = false, features = ["std"] }
 ort = "2.0.0-rc.15"
+mimalloc = "0.1.52"
+rayon = "1.12.0"
 
 [features]
 default = ["ort-webgpu"]
